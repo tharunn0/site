@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fafafa;
+            color: #222;
+            padding: 40px 20px;
+            line-height: 1.5;
+        }
+
+        .wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-family: 'Courier Prime', monospace;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #888;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background-color: #ddd;
+            margin: 30px 0;
+        }
+
+        .profile-section {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+            border-radius: 2px;
+            overflow: hidden;
+            border: 3px solid #222;
+            transform: rotate(-2deg);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bio {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .bio p {
+            font-size: 15px;
+            margin-bottom: 16px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .bio p strong {
+            font-weight: 600;
+        }
+
+        .bio p em {
+            font-style: italic;
+            color: #666;
+        }
+
+        .links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            padding: 8px 14px;
+            background-color: #222;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            border: 2px solid #222;
+        }
+
+        .links a:hover {
+            background-color: transparent;
+            color: #222;
+        }
+
+        .links a.secondary {
+            background-color: transparent;
+            color: #222;
+        }
+
+        .links a.secondary:hover {
+            background-color: #222;
+            color: white;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-family: 'Courier Prime', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .list-item {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #555;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .list-item:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            body {
+                padding: 30px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>hey, i'm tharun</h1>
+            <div class="tagline">swe</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="https://plus.unsplash.com/premium_photo-1772591032220-140b63612d67?w=200&h=200&fit=crop&auto=format&q=80"
+                    alt="me">
+            </div>
+
+            <div class="bio">
+                <p>i'm a student interested in systems, networking, and developer tooling.</p>
+                <p>i enjoy building small tools and backend services while learning how things work under the hood.</p>
+                <p>currently spending most of my time writing go, exploring rust, and contributing to open source.</p>
+
+                <p><em>based in india</em></p>
+
+                <div class="links">
+                    <a href="#projects">projects</a>
+                    <a href="#contact" class="secondary">email</a>
+                    <a href="#github" class="secondary">github</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-title">tech i use</div>
+            <div class="list-item">languages — go, rust, js</div>
+            <div class="list-item">databases — postgres, redis, mongodb</div>
+            <div class="list-item">systems — linux, networking, concurrency</div>
+            <div class="list-item">tools — git, docker, cli & tui development</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">exploring</div>
+            <div class="list-item">backend architecture & microservices</div>
+            <div class="list-item">distributed systems</div>
+            <div class="list-item">networking internals</div>
+            <div class="list-item">database systems</div>
+            <div class="list-item">systems programming</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">projects</div>
+            <div class="list-item">netzy — terminal tool for monitoring network connections</div>
+            <div class="list-item">ecommerce backend — experimental order/payment service</div>
+            <div class="list-item">url shortener — microservice-based backend project</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">currently</div>
+            <div class="list-item">contributing to open source projects</div>
+            <div class="list-item">learning systems and networking internals</div>
+            <div class="list-item">building cli & tui tools with go</div>
+            <div class="list-item">exploring rust and systems programming</div>
+        </div>
+
+        <footer>
+            <p>built with simple tools • 2026</p>
+        </footer>
+    </div>
+</body>
+
+</html>
