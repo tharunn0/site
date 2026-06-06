@@ -243,6 +243,76 @@ footer {
     color: var(--footer-text);
 }
 
+/* Project detail page styles */
+.back-link {
+    margin-bottom: 25px;
+}
+
+.back-link a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+    transition: color var(--transition-speed) ease;
+}
+
+.back-link a:hover {
+    color: var(--text-color);
+}
+
+.project-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+/* Home page project items */
+.project-item {
+    margin-bottom: 12px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.project-item:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+}
+
+.project-link {
+    text-decoration: none;
+    color: var(--list-item-color);
+    font-size: 14px;
+    display: inline-block;
+    transition: color var(--transition-speed) ease;
+}
+
+.project-link:hover {
+    color: var(--text-color);
+}
+
+.project-name {
+    font-weight: 600;
+}
+
+.project-meta {
+    color: var(--list-item-color);
+}
+
+.project-link:hover .project-meta {
+    color: var(--text-secondary);
+}
+
+.project-time {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: 32px;

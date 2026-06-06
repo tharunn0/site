@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>netzy - Project Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Inline script to prevent theme flash (FOUC)
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="back-link">
+            <a href="index.html">← back to home</a>
+        </div>
+        
+        <div class="header">
+            <div class="header-text">
+                <h1>netzy</h1>
+                <div class="tagline">feb 26 - present • CLI network monitor</div>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <!-- Moon icon (shows in light mode) -->
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <!-- Sun icon (shows in dark mode) -->
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-title">description</div>
+            <p class="project-desc">
+                netzy is a terminal-based real-time network connection monitor written in Go. 
+                It listens to active sockets and packet flows, mapping connections to system processes 
+                to show exactly which applications are consuming bandwidth.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">key features</div>
+            <div class="list-item"><strong>Real-time Tracking</strong> — Monitor active TCP/UDP connections instantly.</div>
+            <div class="list-item"><strong>Process Mapping</strong> — Find out exactly which PID and program name is making a network call.</div>
+            <div class="list-item"><strong>Bandwidth Stats</strong> — Measure bytes sent and received per connection.</div>
+            <div class="list-item"><strong>Interactive TUI</strong> — Features a lightweight terminal user interface built using Bubble Tea.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">thought process</div>
+            <p class="project-desc">
+                I was trying to debug a weird background network call on my Linux machine, and standard tools like `lsof` or `netstat` required repetitive polling, while `wireshark` was too heavy. I wanted a fast, lightweight, and interactive command-line interface that immediately answers the question: <em>"Which process is sending packets right now?"</em> I chose Go for its lightweight concurrency models and cross-compilation binaries, making it easily distributable.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">challenges faced</div>
+            <p class="project-desc">
+                The hardest challenge was gathering connection-to-process mappings under Linux. Directly reading from `/proc/net/tcp` and matching inodes with `/proc/[pid]/fd` was slow when done sequentially. I optimized it by building a concurrent worker pool that periodically updates a cache of PIDs and their active file descriptors.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">future roadmap</div>
+            <div class="list-item">BPF integration for zero-overhead packet sniffing on supported Linux kernels.</div>
+            <div class="list-item">Support for mapping remote IPs to geographic location database.</div>
+            <div class="list-item">Configuration files to filter by protocols or hide trusted local services.</div>
+        </div>
+
+        <footer>
+            <p>built with html/css • 2026</p>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        });
+    </script>
+</body>
+
+</html>

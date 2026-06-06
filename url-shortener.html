@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>url shortener - Project Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Inline script to prevent theme flash (FOUC)
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="back-link">
+            <a href="index.html">← back to home</a>
+        </div>
+        
+        <div class="header">
+            <div class="header-text">
+                <h1>url shortener</h1>
+                <div class="tagline">sep 25 - oct 25 • link shortening service</div>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <!-- Moon icon (shows in light mode) -->
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <!-- Sun icon (shows in dark mode) -->
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-title">description</div>
+            <p class="project-desc">
+                url shortener is a high-throughput, low-latency microservice-based link shortening system. 
+                It focuses on lightning-fast redirections and reliable visit count analytics.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">key features</div>
+            <div class="list-item"><strong>Low-latency Redirects</strong> — Achieves sub-millisecond redirections using optimized Redis caches.</div>
+            <div class="list-item"><strong>Distributed Counter</strong> — Aggregates visit counts in memory before flushing to the primary database.</div>
+            <div class="list-item"><strong>Rate Limiting</strong> — Token-bucket rate limiter built directly on top of Redis to prevent abuse.</div>
+            <div class="list-item"><strong>Analytics Dashboard</strong> — Lightweight metrics view showing visitor geographic distributions and user agents.</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">thought process</div>
+            <p class="project-desc">
+                URL shorteners look simple, but they are read-heavy systems where database lookups can quickly become a bottleneck. I wanted to build a service that scales reads horizontally. The core concept was simple: write to database, invalidate or write-through to cache, and read strictly from memory (Redis). If Redis fails, fall back to MongoDB. This taught me a lot about multi-tier caching architectures and cache synchronization strategies.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">challenges faced</div>
+            <p class="project-desc">
+                The primary challenge was managing "hot keys"—short URLs that suddenly get viral traffic. This could lead to a cache stampede or overload the Redis node hosting that key. I solved this by implementing a localized micro-cache on the API server instance for extremely hot keys, and utilizing locking mechanisms to ensure only one request repopulated the cache upon expiry.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">future roadmap</div>
+            <div class="list-item">Geographic routing DNS to serve redirects from nodes physically closest to the visitor.</div>
+            <div class="list-item">Support for customizable link aliases and expiry limits.</div>
+            <div class="list-item">Advanced reporting with exported PDF summaries.</div>
+        </div>
+
+        <footer>
+            <p>built with html/css • 2026</p>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        });
+    </script>
+</body>
+
+</html>
