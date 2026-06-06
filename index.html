@@ -10,194 +10,45 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Inline script to prevent theme flash (FOUC)
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fafafa;
-            color: #222;
-            padding: 40px 20px;
-            line-height: 1.5;
-        }
-
-        .wrapper {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .header {
-            margin-bottom: 50px;
-        }
-
-        h1 {
-            font-size: 42px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-family: 'Courier Prime', monospace;
-            letter-spacing: 1px;
-        }
-
-        .tagline {
-            font-size: 14px;
-            color: #888;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .divider {
-            width: 60px;
-            height: 2px;
-            background-color: #ddd;
-            margin: 30px 0;
-        }
-
-        .profile-section {
-            display: flex;
-            gap: 30px;
-            align-items: flex-start;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            flex-shrink: 0;
-            border-radius: 2px;
-            overflow: hidden;
-            border: 3px solid #222;
-            transform: rotate(-2deg);
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .bio {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .bio p {
-            font-size: 15px;
-            margin-bottom: 16px;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .bio p strong {
-            font-weight: 600;
-        }
-
-        .bio p em {
-            font-style: italic;
-            color: #666;
-        }
-
-        .links {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .links a {
-            display: inline-block;
-            padding: 8px 14px;
-            background-color: #222;
-            color: white;
-            text-decoration: none;
-            font-size: 13px;
-            border-radius: 2px;
-            transition: all 0.2s ease;
-            font-weight: 500;
-            border: 2px solid #222;
-        }
-
-        .links a:hover {
-            background-color: transparent;
-            color: #222;
-        }
-
-        .links a.secondary {
-            background-color: transparent;
-            color: #222;
-        }
-
-        .links a.secondary:hover {
-            background-color: #222;
-            color: white;
-        }
-
-        .section {
-            margin-bottom: 45px;
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            font-family: 'Courier Prime', monospace;
-            letter-spacing: 0.5px;
-        }
-
-        .list-item {
-            font-size: 14px;
-            margin-bottom: 10px;
-            color: #555;
-            padding-left: 16px;
-            position: relative;
-        }
-
-        .list-item:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-        }
-
-        footer {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid #ddd;
-            text-align: center;
-            font-size: 13px;
-            color: #999;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 32px;
-            }
-
-            .profile-section {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .profile-image {
-                width: 120px;
-                height: 120px;
-            }
-
-            body {
-                padding: 30px 16px;
-            }
-        }
-    </style>
+    </script>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="header">
-            <h1>hey, i'm tharun</h1>
-            <div class="tagline">swe</div>
+            <div class="header-text">
+                <h1>hey, i'm tharun</h1>
+                <div class="tagline">swe</div>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <!-- Moon icon (shows in light mode) -->
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <!-- Sun icon (shows in dark mode) -->
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
         </div>
 
         <div class="divider"></div>
@@ -264,6 +115,19 @@
             <p>built with html/css • 2026</p>
         </footer>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        });
+    </script>
 </body>
 
 </html>
