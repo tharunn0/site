@@ -130,27 +130,7 @@ html:not([data-theme="dark"]) .theme-toggle .sun-icon {
 }
 
 .profile-section {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
     margin-bottom: 50px;
-    flex-wrap: wrap;
-}
-
-.profile-image {
-    width: 150px;
-    height: 150px;
-    flex-shrink: 0;
-    border-radius: 2px;
-    overflow: hidden;
-    border: 3px solid var(--text-color);
-    transform: rotate(-2deg);
-}
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .bio {
@@ -326,15 +306,7 @@ footer {
         margin-top: 0px;
     }
 
-    .profile-section {
-        flex-direction: column;
-        gap: 20px;
-    }
 
-    .profile-image {
-        width: 120px;
-        height: 120px;
-    }
 
     body {
         padding: 30px 16px;
