@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ecommerce backend - Project Details</title>
+    <title>Writing - Tharun</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -26,15 +26,11 @@
 
 <body>
     <div class="wrapper">
-        <div class="back-link">
-            <a href="index.html">← back to home</a>
-        </div>
-        
         <nav class="top-nav">
             <div class="nav-links">
                 <a href="index.html" class="nav-link">home</a>
-                <a href="projects.html" class="nav-link active">projects</a>
-                <a href="writing.html" class="nav-link">writing</a>
+                <a href="projects.html" class="nav-link">projects</a>
+                <a href="writing.html" class="nav-link active">writing</a>
                 <a href="https://github.com/tharunn0" class="nav-link" target="_blank" rel="noopener noreferrer">github</a>
             </div>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
@@ -59,48 +55,26 @@
 
         <div class="header">
             <div class="header-text">
-                <h1>ecommerce backend</h1>
-                <div class="tagline">nov 25 - jan 26 • order & payment service</div>
+                <h1>writing</h1>
+                <div class="tagline">essays, notes & thoughts on backend engineering</div>
             </div>
         </div>
 
         <div class="divider"></div>
 
         <div class="section">
-            <div class="section-title">description</div>
-            <p class="project-desc">
-                ecommerce backend is an experimental, highly concurrent order processing and payment service. 
-                It leverages an event-driven architecture to coordinate inventory updates, checkout processes, and payment status updates asynchronously.
-            </p>
-        </div>
-
-        <div class="section">
-            <div class="section-title">key features</div>
-            <div class="list-item"><strong>Event-driven Workflows</strong> — Built using RabbitMQ for reliable, asynchronous event distribution.</div>
-            <div class="list-item"><strong>Consistent Ledger</strong> — Utilizes PostgreSQL transactions and outbox pattern to guarantee data consistency.</div>
-            <div class="list-item"><strong>Stripe Integration</strong> — Native Webhook handler to securely process and reconcile charge events.</div>
-            <div class="list-item"><strong>Containerized Ecosystem</strong> — Configured via Docker Compose for effortless local development and deployment.</div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">thought process</div>
-            <p class="project-desc">
-                Most web developer tutorials show monolithic ecommerce services that quickly break under heavy load or network partitions. I wanted to design an decoupled architecture that models how real-world scale works: checking out is asynchronous, and the user's interface updates via webhooks or polling. I chose PostgreSQL for its strong ACID properties and RabbitMQ because of its flexible routing and high reliability guarantees.
-            </p>
-        </div>
-
-        <div class="section">
-            <div class="section-title">challenges faced</div>
-            <p class="project-desc">
-                Managing distributed state was a massive challenge. Specifically, preventing race conditions where multiple checkout events try to purchase the same inventory item at once, or handling situations where Stripe processes a payment but the user closes the window. I implemented pessimistic locking on critical database records during checkout, and built idempotent event consumers to prevent duplicate processing.
-            </p>
-        </div>
-
-        <div class="section">
-            <div class="section-title">future roadmap</div>
-            <div class="list-item">Distributed tracing with OpenTelemetry to map latency bottlenecks across services.</div>
-            <div class="list-item">Adding a gRPC communication layer between internal services instead of HTTP REST.</div>
-            <div class="list-item">Introducing Redis for distributed locking on order checkouts to minimize DB load.</div>
+            <div class="project-item">
+                <a href="#" class="project-link" onclick="event.preventDefault();">
+                    <span class="project-name">understanding eBPF & socket monitoring in go</span>
+                    <span class="project-meta">— coming soon <span class="project-time">(2026)</span></span>
+                </a>
+            </div>
+            <div class="project-item">
+                <a href="#" class="project-link" onclick="event.preventDefault();">
+                    <span class="project-name">notes on distributed lock patterns</span>
+                    <span class="project-meta">— coming soon <span class="project-time">(2026)</span></span>
+                </a>
+            </div>
         </div>
 
         <footer>
